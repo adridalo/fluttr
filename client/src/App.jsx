@@ -1,8 +1,10 @@
+import './Styles/styles.css'
+
 function App() {
 
   return (
     <>
-      <p>Hello World!</p>
+      <img id='logo' src='./src/assets/logo.png' alt='logo' />
     </>
   )
 }
