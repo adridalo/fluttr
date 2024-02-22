@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,200;1,200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,500;1,500&display=swap');
 body {
     background-color: #1d0a5a;
 }
@@ -13,16 +13,17 @@ header {
 }
 
 #add-post {
-    font-weight: bolder;
-    height: 50%;
-    font-size: larger;
-    border: none;
-    border-radius: 10px;
     cursor: pointer;
+    width: 50px;
 }
 
-#add-post:active {
-    background-color: #bbbbbb;
+#post-textarea {
+    resize: none;
+    width: 40%;
+    background-color: #1d0a5a;
+    border-color: black;
+    border-radius: 10px;
+    color: white;
 }
 
 #logo {
