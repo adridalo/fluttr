@@ -26,6 +26,32 @@ header {
     color: white;
 }
 
+#main {
+    display: flex;
+}
+
+#main #post-form {
+    flex: 3;
+    margin-left: 5px;
+    display: flex;
+    align-items: center;
+}
+
+#post-form img {
+    width: 5%;
+    padding: 1em;
+    cursor: pointer;
+}
+
+#main #feed {
+    flex: 4;
+}
+
+#main #feed h1 {
+    text-align: center;
+    color: white;
+}
+
 #logo {
     display: block;
     margin-left: auto;
