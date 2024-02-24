@@ -9,7 +9,7 @@ export function Auth() {
     useEffect(() => {
         const checkAuth = async () => {
             try {
-                const resp = await fetch('/api/check-auth', {
+                const resp = await fetch('/api/v1/check-auth', {
                     method: 'GET',
                     credentials: "include"
                 })
@@ -19,7 +19,6 @@ export function Auth() {
                 }
 
                 const data = await resp.json()
-                console.log(data)
                 setUserInfo(data.data)
             } catch(e) {
                 console.error(e)
@@ -30,7 +29,7 @@ export function Auth() {
     }, []);
 
     const handleLogin = async (response) => {
-        const resp = await fetch('/api/login', {
+        const resp = await fetch('/api/v1/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
