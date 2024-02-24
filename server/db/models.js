@@ -8,9 +8,10 @@ const userSchema = new mongoose.Schema({
     },
     name: {
         type: String,
-        required: true
+        required: true,
+        unique: false
     },
-    pfp: {
+    picture: {
         type: String,
         required: true
     }

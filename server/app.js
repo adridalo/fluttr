@@ -1,12 +1,9 @@
 const express = require('express');
-const {OAuth2Client} = require("google-auth-library");
+const { OAuth2Client } = require("google-auth-library");
 const User = require('./db/models')
 const session = require("express-session");
-const crypto = require('crypto');
-
-const generateSecret = () => {
-    return crypto.randomBytes(32).toString('hex');
-}
+const generateSecret = require("./util/util");
+const MongoStore = require("connect-mongo");
 
 if(!process.env.SESSION_SECRET) {
     process.env.SESSION_SECRET = generateSecret();
@@ -17,68 +14,85 @@ app.use(express.json())
 app.use(session({
     secret: process.env.SESSION_SECRET,
     resave: false,
-    saveUninitialized: true
+    saveUninitialized: true,
+    store: MongoStore.create({
+        mongoUrl: process.env.DB_URL,
+        dbName: 'fluttr',
+        ttl: 60 * 60 * 1000
+    })
 }))
 
 app.get('/api/', (req, res) => {
     res.json('Hello World!');
 })
 
+app.get('/api/check-auth', (req, res) => {
+    if(req.session && req.session.userId) {
+        const userData = {
+            name: req.session.name,
+            picture: req.session.picture
+        }
+
+        res.status(200).json({
+            status: 'success',
+            data: userData
+        })
+    } else {
+        res.status(401).json({
+            status: 'error',
+            message: 'Not authenticated'
+        })
+    }
+})
+
 app.post('/api/login', async (req, res) => {
     const { credential, clientId, _ } = req.body
 
-    async function verify(clientId, jwtToken) {
+    try {
         const client = new OAuth2Client(clientId)
         const ticket = await client.verifyIdToken({
-            idToken: jwtToken,
+            idToken: credential,
             audience: clientId
         })
+        const payload = ticket.getPayload()
+        const user = await User.findOneAndUpdate({
+            email: payload.email
+        }, {
+            $set: {
+                email: payload.email,
+                name: payload.name,
+                picture: payload.picture
+            }
+        }, {
+            upsert: true,
+            new: true
+        })
 
-        return ticket.getPayload()
-    }
+        await user.save()
 
-    const payload = await verify(clientId, credential)
-    if(payload) {
-        try {
-            const user = await User.findOneAndUpdate({
-                email: payload.email
-            }, {
-                $set: {
-                    email: payload.email,
-                    name: payload.name,
-                    pfp: payload.picture
-                },
-            }, {
-                upsert: true,
-                new: true
-            })
-
-            req.session.userId = payload.email
-
-            await user.save()
-
-            res.status(200).send({
-                status: 'success',
-                data: {
-                    name: user.name,
-                    email: user.email,
-                    pfp: user.pfp
-                }
-            })
-        } catch (error) {
-            console.error(error)
-            res.status(500).send({
-                status: 'error',
-                message: error.message
-            })
+        if(!req.session) {
+            req.session = {}
         }
-    } else {
-        res.status(400).send({
-            status: 'error',
-            message: 'Invalid token'
+
+        req.session.userId = payload.email
+        req.session.picture = payload.picture
+        req.session.name = payload.name
+
+        res.status(200).send({
+            status: 'success',
+            data: {
+                name: user.name,
+                picture: user.picture
+            }
+        })
+
+    } catch (e) {
+        console.error(e)
+        res.status(500).send({
+            status: "error",
+            message: e.message
         })
     }
-
 })
 
 module.exports = app;

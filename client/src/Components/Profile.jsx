@@ -1,9 +1,8 @@
-export function Profile({ name, email, picture }) {
+export function Profile({ name, picture }) {
     return (
         <div id='profile'>
             <img src={picture} alt='profile-picture' />
-            <p>{name}</p>
-            <p>{email}</p>
+            <p id='profile-name'>{name}</p>
         </div>
     )
 }
