@@ -1,23 +1,36 @@
 import {GoogleLogin} from "@react-oauth/google";
+import {useState} from "react";
 
 export function Auth() {
 
-    const handleLogin = (response) => {
-        fetch('/api/login', {
+    const [username, setUsername] = useState("")
+
+    const handleLogin = async (response) => {
+        const resp = await fetch('/api/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(response)
+            body: JSON.stringify(response),
+            credentials: 'include'
         })
+        if(!resp.ok) {
+            throw new Error("Failed to login")
+        }
+        const data = await resp.json()
+        sessionStorage.setItem('authenticated', 'true')
+        setUsername(data.data.name)
     }
 
     return (
         <div id='auth'>
-            <GoogleLogin
-                onSuccess={handleLogin}
-                onError={() => console.log('Login failed')}
-            />
+            {username === '' ?
+                <GoogleLogin
+                    onSuccess={handleLogin}
+                    onError={() => console.log('Login failed')}
+                /> :
+                <p>{username}</p>
+            }
         </div>
     )
 }

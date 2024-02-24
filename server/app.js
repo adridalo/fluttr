@@ -39,21 +39,44 @@ app.post('/api/login', async (req, res) => {
 
     const payload = await verify(clientId, credential)
     if(payload) {
-        const user = await User.updateOne({
-            email: payload.email
-        }, {
-            $set: {
-                email: payload.email,
-                name: payload.name,
-                pfp: payload.picture
-            }
-        }, {
-            upsert: true
+        try {
+            const user = await User.findOneAndUpdate({
+                email: payload.email
+            }, {
+                $set: {
+                    email: payload.email,
+                    name: payload.name,
+                    pfp: payload.picture
+                },
+            }, {
+                upsert: true,
+                new: true
+            })
+
+            req.session.userId = payload.email
+
+            await user.save()
+
+            res.status(200).send({
+                status: 'success',
+                data: {
+                    name: user.name,
+                    email: user.email,
+                    pfp: user.pfp
+                }
+            })
+        } catch (error) {
+            console.error(error)
+            res.status(500).send({
+                status: 'error',
+                message: error.message
+            })
+        }
+    } else {
+        res.status(400).send({
+            status: 'error',
+            message: 'Invalid token'
         })
-
-        req.session.userId = user.email
-
-        user.save()
     }
 
 })
