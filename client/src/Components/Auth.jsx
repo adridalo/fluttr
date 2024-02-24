@@ -1,9 +1,10 @@
 import {GoogleLogin} from "@react-oauth/google";
 import {useState} from "react";
+import {Profile} from "./Profile.jsx";
 
 export function Auth() {
 
-    const [username, setUsername] = useState("")
+    const [userInfo, setUserInfo] = useState(null)
 
     const handleLogin = async (response) => {
         const resp = await fetch('/api/login', {
@@ -19,17 +20,21 @@ export function Auth() {
         }
         const data = await resp.json()
         sessionStorage.setItem('authenticated', 'true')
-        setUsername(data.data.name)
+        setUserInfo(data.data)
     }
 
     return (
         <div id='auth'>
-            {username === '' ?
+            {userInfo === null ?
                 <GoogleLogin
                     onSuccess={handleLogin}
                     onError={() => console.log('Login failed')}
                 /> :
-                <p>{username}</p>
+                <Profile
+                    email={userInfo.email}
+                    name={userInfo.name}
+                    picture={userInfo.pfp}
+                />
             }
         </div>
     )

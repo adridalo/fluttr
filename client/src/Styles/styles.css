@@ -10,6 +10,7 @@ body {
 header {
     display: flex;
     align-items: center;
+    border-bottom: 1px solid white;
 }
 
 #add-post {
@@ -31,20 +32,42 @@ header {
 }
 
 #main #post-form {
-    flex: 3;
+    flex: 4;
     margin-left: 5px;
     display: flex;
     align-items: center;
+    justify-content: center;
+    width: 100%;
+    border-right: 1px solid white;
+}
+
+#auth {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-left: 1px solid white;
+}
+
+#main #feed {
+    flex: 4;
+}
+
+#main #auth {
+    flex: 4;
+}
+
+#main #auth #profile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
 }
 
 #post-form img {
     width: 5%;
     padding: 1em;
     cursor: pointer;
-}
-
-#main #feed {
-    flex: 4;
 }
 
 #main #feed h1 {
