@@ -10,7 +10,7 @@ export function Profile({ name, picture }) {
                 await fetch('/api/v1/logout', {
                     method: 'DELETE'
                 })
-                toast.success('Logout successful')
+                toast.success('Logout Successful')
                 setTimeout(() => {
                     window.location.reload()
                 }, 500)
