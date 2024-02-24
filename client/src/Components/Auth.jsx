@@ -8,9 +8,7 @@ export function Auth() {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({
-                credential: response.credential
-            })
+            body: JSON.stringify(response)
         })
     }
 
