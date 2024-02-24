@@ -1,4 +1,5 @@
 import {redirect} from "react-router-dom";
+import toast, {Toaster} from "react-hot-toast";
 
 export function Profile({ name, picture }) {
     return (
@@ -9,10 +10,17 @@ export function Profile({ name, picture }) {
                 await fetch('/api/v1/logout', {
                     method: 'DELETE'
                 })
-                window.location.reload()
+                toast.success('Logout successful')
+                setTimeout(() => {
+                    window.location.reload()
+                }, 500)
             }}>
                 Logout
             </button>
+            <Toaster
+                position="top-right"
+                reverseOrder={false}
+            />
         </div>
     )
 }

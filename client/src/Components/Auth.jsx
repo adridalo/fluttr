@@ -1,6 +1,7 @@
 import {GoogleLogin} from "@react-oauth/google";
 import {useEffect, useState} from "react";
 import {Profile} from "./Profile.jsx";
+import toast, {Toaster} from "react-hot-toast";
 
 export function Auth() {
 
@@ -38,10 +39,12 @@ export function Auth() {
             credentials: 'include'
         })
         if(!resp.ok) {
-            throw new Error("Failed to login")
+            toast.error('Failed to login')
+            return
         }
         const data = await resp.json()
         setUserInfo(data.data)
+        toast.success('Login Successful')
     }
 
     return (
@@ -50,12 +53,17 @@ export function Auth() {
                 <GoogleLogin
                     onSuccess={handleLogin}
                     onError={() => console.log('Login failed')}
+                    useOneTap={true}
                 /> :
                 <Profile
                     name={userInfo.name}
                     picture={userInfo.picture}
                 />
             }
+            <Toaster
+                position="top-right"
+                reverseOrder={false}
+            />
         </div>
     )
 }
