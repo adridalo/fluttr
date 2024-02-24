@@ -1,8 +1,32 @@
 #!/usr/bin/env node
-require('dotenv').config()
-const app = require('../app')
-const port = process.env.PORT || 3000
+require('dotenv').config();
+const app = require('../app');
+const port = process.env.PORT || 3000;
+const mongoose = require('mongoose');
 
-app.listen(port, () => {
-    console.log(`Listening to server on http://localhost:${port}`);
-})
+(async function () {
+    try {
+        mongoose.connect(process.env.DB_URL, {
+            dbName: 'fluttr'
+        })
+
+        mongoose.connection.on('connected', () => {
+            console.log('Mongoose connection successful!')
+
+            app.listen(port, () => {
+                console.log(`Server listening on http://localhost:${port}`)
+            })
+        })
+        mongoose.connection.on('err', (err) => {
+            console.log('Mongoose connection error:\n', err.stack);
+        });
+        mongoose.connection.on('disconnected', () => {
+            console.log('Mongoose connection disconnected!');
+        });
+
+    } catch (e) {
+        console.error('Error connecting to database')
+        console.dir(e)
+        process.exit(1)
+    }
+})()
