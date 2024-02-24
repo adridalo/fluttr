@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const {Schema} = require("mongoose");
 
 const userSchema = new mongoose.Schema({
     email: {
@@ -14,7 +15,19 @@ const userSchema = new mongoose.Schema({
     picture: {
         type: String,
         required: true
-    }
+    },
 });
 
-module.exports = mongoose.model('User', userSchema)
+const postSchema = new mongoose.Schema({
+    creator: {
+        type: Schema.Types.ObjectId,
+        ref: "users"
+    },
+    postContent: {
+        type: String,
+        required: true,
+    }
+})
+
+module.exports.User = mongoose.model('User', userSchema)
+module.exports.Post = mongoose.model('Post', postSchema)

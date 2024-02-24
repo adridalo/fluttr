@@ -1,5 +1,5 @@
 const {OAuth2Client} = require("google-auth-library");
-const User = require("../db/models");
+const { User } = require("../db/models");
 const checkAuthentication = (req, res) => {
     if(req.session && req.session.userId) {
         const userData = {

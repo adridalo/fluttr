@@ -1,6 +1,5 @@
 const express = require('express');
 const session = require("express-session");
-const generateSecret = require("./util/util");
 const MongoStore = require("connect-mongo");
 const authRouter = require('./routes/auth')
 
