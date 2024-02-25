@@ -12,10 +12,18 @@ const userSchema = new mongoose.Schema({
         required: true,
         unique: false
     },
+    bio: {
+        type: String,
+        default: 'Putting myself out there.'
+    },
     picture: {
         type: String,
         required: true
     },
+    creationDate: {
+        type: Date,
+        default: Date.now()
+    }
 });
 
 const postSchema = new mongoose.Schema({
@@ -26,6 +34,10 @@ const postSchema = new mongoose.Schema({
     postContent: {
         type: String,
         required: true,
+    },
+    date: {
+        type: Date,
+        required: true
     }
 })
 

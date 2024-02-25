@@ -58,6 +58,8 @@ export function Auth() {
                 <Profile
                     name={userInfo.name}
                     picture={userInfo.picture}
+                    bio={userInfo.bio}
+                    creationDate={userInfo.creationDate}
                 />
             }
             <Toaster

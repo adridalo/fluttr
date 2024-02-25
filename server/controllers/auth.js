@@ -35,7 +35,7 @@ const login = async (req, res) => {
             $set: {
                 email: payload.email,
                 name: payload.name,
-                picture: payload.picture
+                picture: payload.picture,
             }
         }, {
             upsert: true,
@@ -56,7 +56,9 @@ const login = async (req, res) => {
             status: 'success',
             data: {
                 name: user.name,
-                picture: user.picture
+                picture: user.picture,
+                bio: user.bio,
+                creationDate: user.creationDate
             }
         })
 

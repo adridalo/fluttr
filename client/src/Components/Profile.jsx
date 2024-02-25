@@ -2,7 +2,7 @@ import {redirect} from "react-router-dom";
 import toast, {Toaster} from "react-hot-toast";
 import {Posts} from "./Posts.jsx";
 
-export function Profile({ name, picture }) {
+export function Profile({ name, picture, bio, creationDate }) {
     return (
         <div id='profile'>
             <img src={picture} alt='profile-picture' />
