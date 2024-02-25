@@ -1,6 +1,6 @@
 import {redirect} from "react-router-dom";
 import toast, {Toaster} from "react-hot-toast";
-import {Posts} from "./Posts.jsx";
+import {SelfPosts} from "./SelfPosts.jsx";
 import dayjs from "dayjs";
 
 export function Profile({ name, picture, bio, creationDate }) {
@@ -50,7 +50,7 @@ export function Profile({ name, picture, bio, creationDate }) {
                     <img src='./src/assets/edit.png' alt='edit-profile'/>
                 </div>
             </div>
-            <Posts/>
+            <SelfPosts/>
             <Toaster
                 position="top-right"
                 reverseOrder={false}

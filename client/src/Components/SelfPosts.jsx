@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 
-export function Posts() {
+export function SelfPosts() {
 
     const [posts, setPosts] = useState([]);
 

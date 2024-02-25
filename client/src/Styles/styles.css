@@ -73,6 +73,11 @@ header {
     width: 100%;
 }
 
+#self-posts {
+    border: 1px solid white;
+    width: 95%;
+}
+
 #profile img {
     margin: 10px;
     width: 25%;
