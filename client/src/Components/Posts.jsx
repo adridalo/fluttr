@@ -18,7 +18,6 @@ export function Posts() {
 
     return (
         <div id='self-posts'>
-            <h2>Previous Posts</h2>
             {posts.map(post => (
                 <div key={post.id}>{post.postContent}</div>
             ))}

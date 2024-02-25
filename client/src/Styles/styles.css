@@ -23,9 +23,13 @@ header {
 }
 
 #post-textarea {
+    display: block;
+    width: 100%;
+    overflow: hidden;
     resize: none;
-    width: 40%;
-    background-color: #1d0a5a;
+    min-height: 100px;
+    line-height: 20px;
+    background-color: #210d6c;
     border-color: black;
     border-radius: 10px;
     color: white;
@@ -53,7 +57,7 @@ header {
 }
 
 #main #feed {
-    flex: 4;
+    flex: 7;
 }
 
 #main #auth {
@@ -66,6 +70,34 @@ header {
     justify-content: center;
     align-items: center;
     color: white;
+    width: 100%;
+}
+
+#profile img {
+    margin: 10px;
+    width: 25%;
+    border-radius: 50%;
+}
+
+#profile-info {
+    width: 100%;
+    margin-left: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#profile-edit img {
+    width: 2.5em;
+    cursor: pointer;
+}
+
+#profile-credentials #profile-bio, #profile-credentials #profile-creation-date {
+    color: grey;
+}
+
+#profile-credentials * {
+    margin: 0.5rem;
 }
 
 #post-form img {

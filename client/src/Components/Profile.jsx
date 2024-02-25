@@ -24,24 +24,33 @@ export function Profile({ name, picture, bio, creationDate }) {
         `
     }
 
+    const handleLogout = async () => {
+        await fetch('/api/v1/auth/logout', {
+            method: 'DELETE'
+        })
+        toast.success('Logout Successful')
+        setTimeout(() => {
+            window.location.reload()
+        }, 500)
+    }
+
     return (
         <div id='profile'>
-            <img src={picture} alt='profile-picture' />
-            <p id='profile-name'>{name}</p>
-            <p id='profile-bio'>{bio}</p>
-            <p id='profile-creation-date'>{calculateAccountAge()}</p>
-            <button onClick={async () => {
-                await fetch('/api/v1/auth/logout', {
-                    method: 'DELETE'
-                })
-                toast.success('Logout Successful')
-                setTimeout(() => {
-                    window.location.reload()
-                }, 500)
-            }}>
+            <img src={picture} alt='profile-picture'/>
+            <button onClick={handleLogout}>
                 Logout
             </button>
-            <Posts />
+            <div id='profile-info'>
+                <div id='profile-credentials'>
+                    <h2 id='profile-name'>{name}</h2>
+                    <p id='profile-bio'>{bio}</p>
+                    <p id='profile-creation-date'>{calculateAccountAge()}</p>
+                </div>
+                <div id='profile-edit'>
+                    <img src='./src/assets/edit.png' alt='edit-profile'/>
+                </div>
+            </div>
+            <Posts/>
             <Toaster
                 position="top-right"
                 reverseOrder={false}
