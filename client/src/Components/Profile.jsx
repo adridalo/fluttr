@@ -13,14 +13,12 @@ export function Profile({ name, picture, bio, creationDate }) {
         const months = now.diff(creation, 'month')
         const days = now.diff(creation, 'day')
         const hours = now.diff(creation, 'hour')
-        const minutes = now.diff(creation, 'minute')
 
         return`
             ${years} yrs
             ${months} mos
             ${days} dys
             ${hours} hrs
-            ${minutes} min
         `
     }
 

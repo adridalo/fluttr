@@ -204,6 +204,28 @@ header {
     width: 2.5em;
 }
 
+#likes #like, #dislikes #dislike {
+    width: 60%;
+    cursor: pointer;
+}
+
+#likes, #dislikes {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    width: 4em;
+}
+
+#likes p, #dislikes p {
+    margin: 1em;
+}
+
+#post-likes-dislikes {
+    display: flex;
+    justify-content: end;
+    flex-direction: column;
+}
+
 #post-info #post-creator {
     font-weight: bolder;
 }

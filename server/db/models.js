@@ -38,6 +38,16 @@ const postSchema = new mongoose.Schema({
     creationDate: {
         type: Date,
         required: true
+    },
+    likes: {
+        type: Number,
+        required: true,
+        default: 0
+    },
+    dislikes: {
+        type: Number,
+        required: true,
+        default: 0
     }
 })
 

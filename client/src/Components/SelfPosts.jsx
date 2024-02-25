@@ -23,7 +23,7 @@ export function SelfPosts() {
     return posts && user ? (
         <div id='self-posts'>
             {posts.map(post => (
-                <div className='post'>
+                <div key={post._id} className='post'>
                     <div key={post.id} id='post-info'>
                         <img src={user.picture} alt='user-profile-picture'/>
                         <p id='post-creator'>{user.name}</p>

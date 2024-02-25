@@ -52,7 +52,7 @@ export function Auth() {
             {userInfo === null ?
                 <GoogleLogin
                     onSuccess={handleLogin}
-                    onError={() => console.log('Login failed')}
+                    onError={() => toast.error('Login failed')}
                     useOneTap={true}
                 /> :
                 <Profile
