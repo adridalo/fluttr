@@ -4,7 +4,9 @@ const checkAuthentication = (req, res) => {
     if(req.session && req.session.userId) {
         const userData = {
             name: req.session.name,
-            picture: req.session.picture
+            picture: req.session.picture,
+            bio: req.session.bio,
+            creationDate: req.session.creationDate
         }
 
         res.status(200).json({
@@ -51,6 +53,8 @@ const login = async (req, res) => {
         req.session.userId = payload.email
         req.session.picture = payload.picture
         req.session.name = payload.name
+        req.session.creationDate = user.creationDate
+        req.session.bio = user.bio
 
         res.status(200).send({
             status: 'success',
@@ -58,7 +62,7 @@ const login = async (req, res) => {
                 name: user.name,
                 picture: user.picture,
                 bio: user.bio,
-                creationDate: user.creationDate
+                creationDate: new Date(user.creationDate)
             }
         })
 
