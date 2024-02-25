@@ -35,7 +35,7 @@ const postSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    date: {
+    creationDate: {
         type: Date,
         required: true
     }

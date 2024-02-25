@@ -18,7 +18,36 @@ const getSelfPosts = async (req, res) => {
 
         res.status(200).send({
             success: true,
-            data: userPosts
+            user: user,
+            posts: userPosts,
+        })
+    } catch (e) {
+        res.status(500).send({
+            status: "error",
+            message: e.message
+        })
+    }
+}
+
+const addNewPost = async (req, res) => {
+    const { postContent, creationDate } = req.body;
+
+    try {
+        const user = await User.findOne({
+            email: req.session.userId
+        })
+        const post = new Post({
+            creator: user,
+            postContent: postContent,
+            creationDate: creationDate
+        })
+
+        await post.save()
+        console.log(post)
+
+        res.status(201).send({
+            success: true,
+            message: "Post added successfully"
         })
     } catch (e) {
         res.status(500).send({
@@ -29,3 +58,4 @@ const getSelfPosts = async (req, res) => {
 }
 
 module.exports.getSelfPosts = getSelfPosts;
+module.exports.addNewPost = addNewPost;

@@ -9,6 +9,7 @@ body {
 
 * {
     font-family: 'Montserrat', sans-serif;
+    box-sizing: border-box;
 }
 
 header {
@@ -33,6 +34,8 @@ header {
     border-color: black;
     border-radius: 10px;
     color: white;
+    margin-top: 10px;
+    margin-left: auto;
 }
 
 #main {
@@ -49,6 +52,12 @@ header {
     border-right: 1px solid white;
 }
 
+#post-form form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 #auth {
     display: flex;
     justify-content: center;
@@ -58,6 +67,33 @@ header {
 
 #main #feed {
     flex: 7;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: flex-start;
+    text-align: center;
+    width: 100%;
+}
+
+#feed #feed-top {
+    display: flex;
+    justify-content: right;
+    width: 100%;
+    margin-top: 0;
+}
+
+#feed-top a {
+    display: flex;
+    justify-content: right;
+    margin: 10px;
+}
+
+#feed #new-post-button {
+    width: 10%;
+}
+
+#main #new-post-button a {
+    text-decoration: none;
 }
 
 #main #auth {
@@ -74,7 +110,6 @@ header {
 }
 
 #self-posts {
-    border: 1px solid white;
     width: 95%;
 }
 
@@ -105,15 +140,19 @@ header {
     margin: 0.5rem;
 }
 
-#post-form img {
+#post-form input {
     width: 5%;
     padding: 1em;
     cursor: pointer;
 }
 
-#main #feed h1 {
-    text-align: center;
-    color: white;
+#post-form a {
+    width: 5%;
+    padding: 10px;
+}
+
+#post-form #back {
+    width: 100%;
 }
 
 #logo {
@@ -121,4 +160,32 @@ header {
     margin-left: auto;
     margin-right: auto;
     width: 10%;
+}
+
+.post {
+    display: flex;
+    flex-direction: column;
+    padding: 1em;
+    border: 1px solid white;
+    margin: 1em 0 1em 0;
+    border-radius: 10px;
+}
+
+.post #post-info {
+    display: flex;
+    align-items: center;
+    padding: 0;
+}
+
+#post-info img {
+    width: 2.5em;
+}
+
+#post-info #post-creator {
+    font-weight: bolder;
+}
+
+#post-info #post-creation-date {
+    margin-left: 0.5rem;
+    color: grey;
 }

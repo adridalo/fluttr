@@ -10,7 +10,6 @@ function Fluttr() {
     <>
         <Header />
         <div id='main'>
-            <PostForm />
             <Feed />
             <Auth />
         </div>

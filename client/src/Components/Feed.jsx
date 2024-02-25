@@ -1,12 +1,18 @@
+import {Link} from "react-router-dom";
+
 export function Feed() {
 
     return (
         <div id='feed'>
-            <h1 onClick={async () => {
-                const results = await fetch('/api')
-                const data = await results.json()
-                alert(data)
-            }}>Feed</h1>
+            <div id='feed-top'>
+                <Link to='/newPost'>
+                    <img
+                        src='./src/assets/new.png'
+                        id='new-post-button'
+                        alt='new-post-image'
+                    />
+                </Link>
+            </div>
         </div>
     );
 }
