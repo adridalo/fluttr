@@ -29,6 +29,23 @@ const getSelfPosts = async (req, res) => {
     }
 }
 
+const getAllPosts = async (req, res) => {
+    try {
+        const posts = await Post.find().populate('creator')
+
+        res.status(200).send({
+            success: true,
+            posts: posts,
+        })
+    } catch (e) {
+        console.error(e)
+        res.status(500).send({
+            status: "error",
+            message: e.message
+        })
+    }
+}
+
 const addNewPost = async (req, res) => {
     const { postContent, creationDate } = req.body;
 
@@ -59,3 +76,4 @@ const addNewPost = async (req, res) => {
 
 module.exports.getSelfPosts = getSelfPosts;
 module.exports.addNewPost = addNewPost;
+module.exports.getAllPosts = getAllPosts;

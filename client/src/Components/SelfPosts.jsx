@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import dayjs from "dayjs";
+import {formatTime} from "../util/util.js";
 
 export function SelfPosts() {
 
@@ -18,10 +19,6 @@ export function SelfPosts() {
             setUser(data.user)
         })()
     }, []);
-
-    const formatTime = time => {
-        return dayjs(time).format("MMM DD, YYYY, HH : mm : ss");
-    }
 
     return posts && user ? (
         <div id='self-posts'>

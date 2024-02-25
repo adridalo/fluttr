@@ -29,7 +29,7 @@ const userSchema = new mongoose.Schema({
 const postSchema = new mongoose.Schema({
     creator: {
         type: Schema.Types.ObjectId,
-        ref: "users"
+        ref: "User"
     },
     postContent: {
         type: String,

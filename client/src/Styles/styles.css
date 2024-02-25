@@ -43,7 +43,6 @@ header {
 }
 
 #main #post-form {
-    flex: 4;
     margin-left: 5px;
     display: flex;
     align-items: center;
@@ -97,7 +96,7 @@ header {
 }
 
 #main #auth {
-    flex: 4;
+    flex: 3;
 }
 
 #main #auth #profile {
@@ -111,6 +110,10 @@ header {
 
 #self-posts {
     width: 95%;
+}
+
+#posts {
+    width: 100%;
 }
 
 #profile img {
@@ -140,6 +143,11 @@ header {
     margin: 0.5rem;
 }
 
+#profile #logout {
+    width: 5%;
+    cursor: pointer;
+}
+
 #post-form input {
     width: 5%;
     padding: 1em;
@@ -163,18 +171,33 @@ header {
 }
 
 .post {
-    display: flex;
-    flex-direction: column;
     padding: 1em;
     border: 1px solid white;
     margin: 1em 0 1em 0;
     border-radius: 10px;
 }
 
+#feed .post {
+    color: white;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: start;
+}
+
 .post #post-info {
     display: flex;
     align-items: center;
     padding: 0;
+}
+
+#feed .post #post-info img {
+    border-radius: 50px;
+}
+
+#feed .post #post-info * {
+    display: flex;
+    margin: 5px
 }
 
 #post-info img {

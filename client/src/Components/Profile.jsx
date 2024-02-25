@@ -37,9 +37,12 @@ export function Profile({ name, picture, bio, creationDate }) {
     return (
         <div id='profile'>
             <img src={picture} alt='profile-picture'/>
-            <button onClick={handleLogout}>
-                Logout
-            </button>
+            <img
+                id='logout'
+                src='./src/assets/logout.png'
+                alt='logout'
+                onClick={handleLogout}
+            />
             <div id='profile-info'>
                 <div id='profile-credentials'>
                     <h2 id='profile-name'>{name}</h2>
