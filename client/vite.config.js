@@ -11,17 +11,17 @@ export default defineConfig({
         changeOrigin: true,
         rewrite: path => path.replace(/^\//, '')
       },
-      "/api/v1/login": {
+      "/api/v1/auth/login": {
         target: 'http://localhost:3000',
         changeOrigin: true,
         rewrite: path => path.replace(/^\//, '')
       },
-      "/api/v1/check-auth": {
+      "/api/v1/auth/check-auth": {
         target: 'http://localhost:3000',
         changeOrigin: true,
         rewrite: path => path.replace(/^\//, '')
       },
-      "/api/v1/logout": {
+      "/api/v1/auth/logout": {
         target: 'http://localhost:3000',
         changeOrigin: true,
         rewrite: path => path.replace(/^\//, '')

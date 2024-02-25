@@ -10,7 +10,7 @@ export function Auth() {
     useEffect(() => {
         const checkAuth = async () => {
             try {
-                const resp = await fetch('/api/v1/check-auth', {
+                const resp = await fetch('/api/v1/auth/check-auth', {
                     method: 'GET',
                     credentials: "include"
                 })
@@ -30,7 +30,7 @@ export function Auth() {
     }, []);
 
     const handleLogin = async (response) => {
-        const resp = await fetch('/api/v1/login', {
+        const resp = await fetch('/api/v1/auth/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

@@ -2,6 +2,7 @@ const express = require('express');
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
 const authRouter = require('./routes/auth')
+const postsRouter = require("./routes/posts");
 
 const app = express();
 app.use(express.json())
@@ -16,6 +17,7 @@ app.use(session({
     })
 }))
 
-app.use('/api/v1', authRouter)
+app.use('/api/v1/auth', authRouter)
+app.use('/api/v1/posts', postsRouter)
 
 module.exports = app;
